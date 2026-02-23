@@ -1,0 +1,94 @@
+body {
+  background: radial-gradient(circle at top, #f5f7ff, #e3e6f0);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+header.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.timer-display {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* BUTTONS */
+#btnPlayPause {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btnReset {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* CARDS */
+.settings-card,
+.kana-card {
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* GRID */
+.kana-grid {
+  display: grid;
+  gap: 0.5rem;
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+.kana-cell {
+  padding: 0.4rem 0.2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.kana-char {
+  font-weight: 600;
+}
+
+.kana-romaji {
+  display: block;
+  font-size: 0.7em;
+  color: #6b7280;
+  margin-top: 0.15rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.show-romaji .kana-romaji {
+  opacity: 1;
+}
+
+.seed-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@media (max-width: 767.98px) {
+  .timer-display {
+    font-size: 1.3rem;
+  }
+}
