@@ -180,6 +180,7 @@ function startTimer() {
       updateTimerDisplay();
     } else {
       pauseTimer();
+	  document.querySelector("header").classList.add("header-blink");
     }
   }, 1000);
 }
@@ -195,6 +196,7 @@ function resetTimer() {
   pauseTimer();
   timerSecondsRemaining = timerSecondsDefault;
   updateTimerDisplay();
+  document.querySelector("header").classList.remove("header-blink");
 }
 
 // -------------------- UI Wiring --------------------

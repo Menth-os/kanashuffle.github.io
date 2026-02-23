@@ -43,6 +43,18 @@ header.sticky-header {
   padding: 0;
 }
 
+/* Header blinkt, wenn Timer abgelaufen ist */
+.header-blink {
+  animation: headerBlink 1s ease-in-out infinite;
+}
+
+@keyframes headerBlink {
+  0%   { background-color: rgba(255, 255, 255, 0.9); }
+  50%  { background-color: rgba(255, 100, 100, 0.9); }
+  100% { background-color: rgba(255, 255, 255, 0.9); }
+}
+
+
 /* CARDS */
 .settings-card,
 .kana-card {
