@@ -180,7 +180,7 @@ function startTimer() {
       updateTimerDisplay();
     } else {
       pauseTimer();
-	  document.querySelector("header").classList.add("header-blink");
+      document.querySelector("header").classList.add("header-blink");
     }
   }, 1000);
 }
@@ -202,6 +202,7 @@ function resetTimer() {
 // -------------------- UI Wiring --------------------
 document.addEventListener("DOMContentLoaded", () => {
   const kanaTypeSelect = document.getElementById("kanaType");
+  const fontSelect = document.getElementById("fontSelect");
   const seedInput = document.getElementById("seedInput");
   const btnGenerate = document.getElementById("btnGenerate");
   const btnToggleRomaji = document.getElementById("btnToggleRomaji");
@@ -221,6 +222,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cleanedSeed) seedInput.value = cleanedSeed;
 
   renderKanaGrid(initialType, effectiveSeed);
+
+  // Apply font after initial render
+  document.querySelectorAll(".kana-char").forEach(el => {
+    el.style.fontFamily = `"${fontSelect.value}"`;
+  });
+
   updateTimerDisplay();
 
   // Regenerate
@@ -228,6 +235,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = kanaTypeSelect.value;
     const cleaned = sanitizeSeed(seedInput.value);
     renderKanaGrid(type, cleaned || getDefaultDailySeed());
+
+    document.querySelectorAll(".kana-char").forEach(el => {
+      el.style.fontFamily = `"${fontSelect.value}"`;
+    });
   });
 
   // Change type
@@ -235,6 +246,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = kanaTypeSelect.value;
     const cleaned = sanitizeSeed(seedInput.value);
     renderKanaGrid(type, cleaned || getDefaultDailySeed());
+
+    document.querySelectorAll(".kana-char").forEach(el => {
+      el.style.fontFamily = `"${fontSelect.value}"`;
+    });
+  });
+
+  // Font change
+  fontSelect.addEventListener("change", () => {
+    document.querySelectorAll(".kana-char").forEach(el => {
+      el.style.fontFamily = `"${fontSelect.value}"`;
+    });
   });
 
   // Toggle romaji
@@ -267,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnReset.addEventListener("click", resetTimer);
 
-  // NEW: Clear seed button
+  // Clear seed button
   btnClearSeed.addEventListener("click", () => {
     seedInput.value = "";
     seedInput.focus();
@@ -278,5 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const type = kanaTypeSelect.value;
     const cleaned = sanitizeSeed(seedInput.value);
     renderKanaGrid(type, cleaned || getDefaultDailySeed());
+
+    document.querySelectorAll(".kana-char").forEach(el => {
+      el.style.fontFamily = `"${fontSelect.value}"`;
+    });
   });
 });
