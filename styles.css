@@ -1,0 +1,135 @@
+/* Optional local fonts (safe to remove if you don't bundle fonts locally) */
+@font-face { font-family: "Cherry Bomb One"; src: url("./fonts/CherryBombOne-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Noto Sans JP"; src: url("./fonts/NotoSansJP-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Noto Serif JP"; src: url("./fonts/NotoSerifJP-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Shippori Mincho"; src: url("./fonts/ShipporiMincho-Regular.ttf") format("truetype"); font-display: swap; }
+
+.glass { backdrop-filter: blur(10px); }
+
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.seed-mono, .timer-mono {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.timer {
+  min-width: 112px;
+  text-align: center;
+}
+
+/* Settings offcanvas fullscreen on mobile */
+@media (max-width: 575.98px) {
+  #settings { --bs-offcanvas-width: 100vw; }
+}
+
+/* Compact action buttons on mobile so they don't get huge */
+@media (max-width: 575.98px) {
+  .btn-mobile-compact {
+    font-size: .88rem;
+    padding: .45rem .65rem;
+  }
+  .btn-mobile-compact i { margin-right: .35rem !important; }
+}
+
+/* Main two-button layout on small screens */
+.main-actions {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+@media (max-width: 575.98px) {
+  .main-actions { width: 100%; }
+  .main-actions .main-action-btn {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+/* Improve outline button readability in dark mode */
+html[data-bs-theme="dark"] .btn-outline-secondary {
+  --bs-btn-color: rgba(255,255,255,.82);
+  --bs-btn-border-color: rgba(255,255,255,.28);
+  --bs-btn-hover-color: rgba(255,255,255,.92);
+  --bs-btn-hover-bg: rgba(255,255,255,.10);
+  --bs-btn-hover-border-color: rgba(255,255,255,.40);
+  --bs-btn-active-bg: rgba(255,255,255,.14);
+  --bs-btn-active-border-color: rgba(255,255,255,.46);
+}
+
+/* Kana card / grid */
+.kana-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+html[data-bs-theme="dark"] .kana-card {
+  background: linear-gradient(180deg, rgba(30,30,30,.8), rgba(15,15,15,.6));
+  border-color: rgba(255,255,255,.12);
+}
+
+.kana-grid {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr));
+}
+
+.kana-cell {
+  border-radius: .9rem;
+  padding: .7rem .45rem;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.65);
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+}
+
+html[data-bs-theme="dark"] .kana-cell {
+  background: rgba(20,20,20,.6);
+  border-color: rgba(255,255,255,.12);
+}
+
+.kana-char {
+  display: block;
+  font-size: clamp(1.8rem, 5.6vw, 2.7rem);
+  letter-spacing: .02em;
+}
+
+.kana-romaji {
+  display: block;
+  margin-top: .25rem;
+  font-size: .9rem;
+  opacity: 0;
+  color: var(--bs-secondary-color);
+  transition: opacity .15s ease;
+}
+
+.kana-card.show-romaji .kana-romaji { opacity: 1; }
+
+/* Timer finished animation */
+.header-blink {
+  animation: headerBlink 1s ease-in-out infinite;
+}
+
+@keyframes headerBlink {
+  0% { filter: none; }
+  50% { filter: saturate(2) contrast(1.05); }
+  100% { filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-blink { animation: none; }
+  .kana-romaji { transition: none; }
+}
